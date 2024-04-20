@@ -2,7 +2,68 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="home section" id="home">
+	<div class="home__container container grid">
+		<img src="~/img/home.svg" alt="image" class="home__img">
+		<div class="home__data">
+			<h1 class="home__title">
+				<span>Войдите</span><br>
+				ЧТОБЫ <span>НАЧАТЬ</span> <span>ОБУЧЕНИЕ</span><br>
+				В НАШЕЙ КОМПАНИИ <br>
+			</h1>
+			<p class="home__description">
+				Приветствуем тебя новый сотрудник!
+			</p>
+			<div class="home__buttons">
+				<a href="/User/Login" class="button">
+					<span>
+						<i class="ri-arrow-right-line"></i>
+					</span>
+					Войти
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="contact section" id="contact">
+	<h2 class="section__title">
+		Если у вас есть вопросы<br> Наши контакты
+	</h2>
+
+	<div class="contact__container container grid">
+		<img src="~/img/writefome.svg" alt="image" class="contact__img">
+		<div class="contact__content">
+			<h3 class="contact__title">Напиши нам</h3>
+
+			<div class="contact__social">
+				<a href="" target="_blank">
+					<i class="ri-discord-fill"></i>
+				</a>
+
+				<a href="https://t.me/Ashinomurr" target="_blank">
+					<i class="ri-telegram-fill"></i>
+				</a>
+
+				<a href="https://vk.com/ashinomurr" target="_blank">
+					<i class="ri-vk-fill"></i>
+				</a>
+			</div>
+
+			<div>
+				<h3 class="contact__title">Телефон для связи</h3>
+				<address class="contact__info">
+					+0 123-456-67-54 <br>
+					+12-34-56
+				</address>
+			</div>
+
+			<div>
+				<h3 class="contact__title">Наш отдел находится по адресу</h3>
+				<address class="contact__info">
+					Ставропольский край, г. Михайловск<br>Карла-Маркса 44/2
+				</address>
+			</div>
+		</div>
+
+</section>
