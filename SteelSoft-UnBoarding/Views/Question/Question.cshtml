@@ -28,19 +28,19 @@
             <div class="button-group">
                 @if (sosedi.last != -1)
                 {
-                    <button type="submit">Назад</button>
+                    <a href="/question/@(sosedi.last)">Назад</a>
                 }
                 @if (Model.GetInformation().complite != "+")
                 {
-                    <button id="accept_con" id-question="@(Model.GetInformation().ID)" type="reset">Принять</button>
+                    <a id="accept_con" id-question="@(Model.GetInformation().ID)" type="reset">Принять</a>
                 }
                 @if (sosedi.next != -1)
                 {
-                    <button type="button">Дальше</button>
+                    <a href="/question/@(sosedi.next)">Дальше</a>
                 } 
                 else
                 {
-                    <button type="button">Вернуться</button>
+                    <a href="/user/profile?id=@(Model.GetInformation().id_task)">Вернуться</a>
                 }
             </div>
         </div>

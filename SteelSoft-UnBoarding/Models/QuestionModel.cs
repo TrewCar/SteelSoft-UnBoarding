@@ -21,7 +21,7 @@ namespace SteelSoft_UnBoarding.Models
 
             var qs = new Question()
             {
-                ID = ID,
+                ID = int.Parse(resQuery[0]["id"]),
                 Number = int.Parse( resQuery[0]["number"]),
                 Title = resQuery[0]["title"],
                 Content = resQuery[0]["content"],

@@ -13,7 +13,7 @@ namespace SteelSoft_UnBoarding.Models
         {
             var resQuery = PostgreSQL.Query($"SELECT sum(score) as sum FROM questions JOIN infousers as ui on ui.id_user = {User.ID} and ui.id_task = questions.id");
 
-            return int.Parse(resQuery[0]["sum"]);
+            return int.Parse((resQuery[0]["sum"] == "" ? "0" : resQuery[0]["sum"]));
         }
     }
 }

@@ -9,15 +9,19 @@ $(document).ready(function () {
     $(`body`).on(`click`, `#accept_con`, function () {
         let id = $(`#accept_con`).attr(`id-question`);
         $.ajax({
-            url: "/api/TaskQuest/Complite",
-            data: {
-                id_question: id
-            },
+            url: `/api/TaskQuest/${id}`,
             dataType: "JSON",
             type: "GET"
         })
             .done((json) => {
-                console.log(json);
-            })
+                alert(json.msg);
+                if (json.status == "SUCCESS") {
+                    $(`#accept_con`).remove();
+                }
+                else {
+
+                }
+            });
+        
     })
 });

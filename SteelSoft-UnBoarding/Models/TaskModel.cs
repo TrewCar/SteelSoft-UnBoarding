@@ -44,7 +44,7 @@ namespace SteelSoft_UnBoarding.Models
                 Name = resQuery[0]["name"],
                 Description = resQuery[0]["description"],
                 ScoreTotal = int.Parse(resQuery[0]["total"]),
-                ScoreComplite = int.Parse(resQuery[0]["complite"])
+                ScoreComplite = int.Parse((resQuery[0]["complite"] == "" ? "0" : resQuery[0]["complite"]))
             };
         }
     }

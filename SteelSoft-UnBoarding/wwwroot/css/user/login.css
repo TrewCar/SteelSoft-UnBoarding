@@ -7,13 +7,15 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
+    background-image: url(/css/user/layered-waves-haikei1.svg);
+    background-size: cover;
 }
 .wrapper {
-
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
-    background-color: #337fbb;
+    backdrop-filter: blur(9px);
+    /*background-color: #337fbb;*/
     filter: drop-shadow(0 0 0.75rem #337fbb);
     border-radius: 12px;
     padding: 30px 40px;

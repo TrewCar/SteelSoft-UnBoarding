@@ -10,8 +10,8 @@ namespace SteelSoft_UnBoarding.Controllers.API
 	[ApiController]
 	public class TaskQuestController : ControllerBase
 	{
-		[HttpGet("Complite")]
-		public ResAnswer Get(int id_question)
+		[HttpGet("{id}")]
+		public ResAnswer Get(int id)
 		{
 			User user = new User();
 			if (Request.Cookies.TryGetValue("login", out string GUID))
@@ -29,7 +29,7 @@ namespace SteelSoft_UnBoarding.Controllers.API
 						status = "ERROR"
 					};
 				}
-				if (int.Parse(PostgreSQL.Query($"SELECT count(*) as count FROM infousers WHERE id_user = {user.ID}, id_task = {id_question}")[0]["count"]) == 0)
+				if (int.Parse(PostgreSQL.Query($"SELECT count(*) as count FROM infousers WHERE id_user = {user.ID} AND id_task = {id}")[0]["count"]) != 0)
 				{
                     return new ResAnswer()
                     {
@@ -37,7 +37,7 @@ namespace SteelSoft_UnBoarding.Controllers.API
                         status = "ERROR"
                     };
                 }
-				PostgreSQL.QueryNotExicute($"INSERT INTO infousers VALUES({user.ID}, {id_question})");
+				PostgreSQL.QueryNotExicute($"INSERT INTO infousers VALUES({user.ID}, {id})");
 
 				return new ResAnswer()
 				{
