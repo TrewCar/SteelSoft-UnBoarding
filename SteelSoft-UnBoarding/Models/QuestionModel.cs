@@ -17,7 +17,7 @@ namespace SteelSoft_UnBoarding.Models
             if(question != null) { 
                 return question;
             }
-            var resQuery = PostgreSQL.Query($"SELECT * FROM questions  WHERE id = {ID}");
+            var resQuery = PostgreSQL.Query($"SELECT questions.*, CASE WHEN ui.id_user IS NULL THEN '-' ELSE '+' END AS condition_result FROM questions LEFT JOIN infousers AS ui on ui.id_user = {User.ID} and ui.id_task = {ID} WHERE id = {ID}");
 
             var qs = new Question()
             {
@@ -27,6 +27,7 @@ namespace SteelSoft_UnBoarding.Models
                 Content = resQuery[0]["content"],
                 score = int.Parse( resQuery[0]["score"]),
                 id_task = int.Parse(resQuery[0]["id_task"]),
+                complite = resQuery[0]["condition_result"]
             };
             question = qs;
             return question;
@@ -35,12 +36,12 @@ namespace SteelSoft_UnBoarding.Models
         public (int last, int next) GetSosedi()
         {
             int last = -1, next = -1;
-            var resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM question WHERE number < {GetInformation().Number} WHERE id = {ID}") ?? null;
+            var resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM questions WHERE number < {GetInformation().Number} AND id_task = {GetInformation().id_task}") ?? null;
             if (int.Parse(resQuery[0]["count"]) > 0)
             {
                 last = GetInformation().Number - 1;
             }
-             resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM question WHERE number > {GetInformation().Number} WHERE id = {ID}") ?? null;
+             resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM questions WHERE number > {GetInformation().Number} AND id_task = {GetInformation().id_task}") ?? null;
             if (int.Parse(resQuery[0]["count"]) > 0)
             {
                 next = GetInformation().Number + 1;
@@ -62,5 +63,6 @@ namespace SteelSoft_UnBoarding.Models
         public string Content { get; set; }
         public int score { get; set; }
         public int id_task { get; set; }
+        public string complite { get; set; }
     }
 }

@@ -10,9 +10,36 @@ namespace SteelSoft_UnBoarding.Controllers
     {
         public IActionResult Login()
         {
-            return View();
+            if (Request.Cookies.TryGetValue("login", out string GUID))
+            {
+				try
+				{
+					User user = UserMenedger.Users[GUID];
+				}
+				catch (Exception ex)
+				{
+					Response.Cookies.Delete("login");
+					return RedirectToAction("Login");
+				}
+				return RedirectToAction("Profile", "User");
+            }
+
+			return View();
         }
-        public IActionResult Profile()
+        public IActionResult LogOut()
+        {
+            if (Request.Cookies.TryGetValue("login", out string res))
+            {
+                UserMenedger.LogOut(res);
+                Response.Cookies.Delete("login");
+            }
+            return RedirectToAction("Index", "Home");
+            //return new ResAnswer() {
+            //    msg = "Успешный выход",
+            //    status = "SUCCESS"
+            //};
+        }
+        public IActionResult Profile(int id = -1)
         {
             if (Request.Cookies.TryGetValue("login", out string GUID))
             {
@@ -25,7 +52,7 @@ namespace SteelSoft_UnBoarding.Controllers
                     Response.Cookies.Delete("login");
                     return RedirectToAction("Login");
                 }
-                return View(new UserModel(UserMenedger.Users[GUID]));
+                return View(new TaskModel(id, UserMenedger.Users[GUID]));
             }
             return RedirectToAction("Login");
         }

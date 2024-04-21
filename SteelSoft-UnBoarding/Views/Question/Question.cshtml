@@ -1,13 +1,50 @@
-﻿@*
-    Страница с содержанием вопроса:
-        Заголовок
-        Содержание
-        3 кнопки:
-            Назад - Условие - она может просто напросто отсутсвовать
-            Прочитал - Кнопка с призявкой JS события, Условие - при загрузке страницы может отсутсвовать изза того что эта страница может быть уже прочиатана
-            Даллее - Условие - Может быть заменена на Завершить
-
-        JS - я сам
-*@
+﻿@model QuestionModel
+@* <title>UserProfile</title> *@
 @{
+    var sosedi = Model.GetSosedi();
 }
+<script src="https://kit.fontawesome.com/b8b432d7d3.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="~/css/user/userstyle.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user/question.css" asp-append-version="true">
+<div class="profile-card">
+    <div class="profile-header">
+        <div class="main-profile">
+            <div class="profile-image"></div>
+            <div class="profile-names">
+                <h1 class="username">@Model.User.Name</h1>
+                <small class="page-title">@Model.User.Post</small>
+                <small class="page-title">Баллов - @Model.GetBalls()</small>
+            </div>
+        </div>
+    </div>
+    <div class="question">
+        <div class="content-question">
+            <div class="input-group">
+                <textarea type="text" id="text1" name="text1">@Model.GetInformation().Title</textarea>
+            </div>
+            <div class="input-group">
+                <textarea type="text" id="text2" name="text2">@Model.GetInformation().Content</textarea>
+            </div>
+            <div class="button-group">
+                @if (sosedi.last != -1)
+                {
+                    <button type="submit">Назад</button>
+                }
+                @if (Model.GetInformation().complite != "+")
+                {
+                    <button id="accept_con" id-question="@(Model.GetInformation().ID)" type="reset">Принять</button>
+                }
+                @if (sosedi.next != -1)
+                {
+                    <button type="button">Дальше</button>
+                } 
+                else
+                {
+                    <button type="button">Вернуться</button>
+                }
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script src="~/js/user/question.js" asp-append-version="true"></script>

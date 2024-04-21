@@ -5,5 +5,6 @@
         public string ID;
         public string Name;
         public string GUID = Guid.NewGuid().ToString();
+        public string Post;
     }
 }

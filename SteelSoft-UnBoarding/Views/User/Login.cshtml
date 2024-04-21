@@ -8,8 +8,20 @@
 @{
 }
 
-<div>
-    <input placeholder="Login"/>
-    <input placeholder="password"/>
-    <button>Войти</button>
+<link rel="stylesheet" href="~/css/user/login.css" asp-append-version="true">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="wrapper">
+    <div action="">
+        <h1>Вход</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Логин" required id="login">
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Пароль" required id="password">
+            <i class='bx bxs-lock-alt'></i>
+        </div>
+        <button type="submit" id="send" class="btn">Войти</button>
+    </div>
 </div>
+<script src="~/js/user/login.js" asp-append-version="true"></script>

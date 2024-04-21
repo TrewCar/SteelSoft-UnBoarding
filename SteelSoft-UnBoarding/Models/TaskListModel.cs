@@ -16,16 +16,16 @@ namespace SteelSoft_UnBoarding.Models
                 );
 
             List<TaskItem> res = new();
-
-            foreach( var item in resQuery )
+            var items = resQuery[0]["complite"];
+            foreach ( var item in resQuery )
             {
                 var row = new TaskItem()
                 {
                     Id = int.Parse(item["id"]),
                     Name = item["name"],
                     Description = item["description"],
-                    ScoreTotal = int.Parse(item["total"]),
-                    ScoreComplite = int.Parse(item["complite"])
+                    ScoreTotal = int.Parse(item["total"] ?? "0"),
+                    ScoreComplite = int.Parse(item["complite"] == "" ? "0" : item["complite"])
                 };
                 res.Add(row);   
             }

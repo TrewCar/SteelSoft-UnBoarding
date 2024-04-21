@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SteelSoft_UnBoarding.Data;
+using SteelSoft_UnBoarding.Menedgers;
 using SteelSoft_UnBoarding.Models;
 using System.Diagnostics;
 
@@ -15,7 +17,20 @@ namespace SteelSoft_UnBoarding.Controllers
 
         public IActionResult Index()
         {
-            return View();
+			if (Request.Cookies.TryGetValue("login", out string GUID))
+			{
+				try
+				{
+					User user = UserMenedger.Users[GUID];
+				}
+				catch (Exception ex)
+				{
+					Response.Cookies.Delete("login");
+					return View();
+				}
+				return View(new UserModel(UserMenedger.Users[GUID]));
+			}
+			return View();
         }
 
         public IActionResult Privacy()

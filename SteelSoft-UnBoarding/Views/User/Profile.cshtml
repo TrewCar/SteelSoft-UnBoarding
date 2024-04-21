@@ -1,14 +1,86 @@
-﻿@*
-    Страница пользователя
+﻿@model TaskModel
+@* <title>UserProfile</title> *@
+<script src="https://kit.fontawesome.com/b8b432d7d3.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="~/css/user/userstyle.css" asp-append-version="true">
+<div class="profile-card">
+    <div class="profile-header">
+        <div class="main-profile">
+            <div class="profile-image"></div>
+            <div class="profile-names">
+                <h1 class="username">@Model.User.Name</h1>
+                <small class="page-title">@Model.User.Post</small>
+                <small class="page-title">Баллов - @Model.GetBalls()</small>
+            </div>
+        </div>
+    </div>
 
-    Сделайте Шаблон :
-        страница пользщователя 
-        Кол-во выполненых балов (Привер : 45/60 баллов) 
-        Список заданий (фАдоптированное на неограниченное кол-во) :
-            Название, 
-            Краткое содержание
-            3/10 баллов,
+    <div class="profile-body">
+        <div class="profile-actions">
+            <!-- <button class="follow">Follow</button>
+            <button class="message">Message</button> -->
+            <section class="bio">
+                <div class="bio-header">
+                    <i class="fa-solid fa-list-check"></i>
+                    Задачи
+                </div>
+                @{
+                    TaskListModel tlModel = new TaskListModel(Model.User);
+                    var res = tlModel.GetTasks();
+                    foreach(var item in res)
+                    {
+                        if (item.ScoreComplite == 0)
+                        {
+                            <a href="/user/profile?id=@item.Id" class="bio-text">
+                                <button class="Open">
+                                    @item.Name
+                                    <p>@item.ScoreComplite / @item.ScoreTotal</p>
+                                </button>
+                            </a>
+                        } else if (item.ScoreComplite == item.ScoreTotal) {
+                            <a href="/user/profile?id=@item.Id" class="bio-text">
+                                <button class="Close">
+                                    @item.Name
+                                    <p>@item.ScoreComplite / @item.ScoreTotal</p>
+                                </button>
+                            </a>
+                        } else
+                        {
+                            <a href="/user/profile?id=@item.Id" class="bio-text">
+                                <button class="Proccess">
+                                    @item.Name
+                                    <p>@item.ScoreComplite / @item.ScoreTotal</p>
+                                </button>
+                            </a>
+                        }
+                    }
+                }
+            </section>
+        </div>
 
-*@
-@{
-}
+        <div class="text-desciption">
+            <section class="description">
+                <div class="description-header">
+                    <i class="fa-brands fa-readme"></i>
+                    @(Model.Id != -1 ? "Пункты" : "Выберите задание")
+                </div>
+                @if(Model.Id != -1)
+                {
+                    var questions = Model.GetQuestions();
+                    foreach(var item in questions)
+                    {
+                        <a href="/question/@item.ID" class="bio-text">
+                            <button class="@(item.complite == "+" ? "Close" : "Open")">
+                                @item.Title <br /> 
+                                Баллов: @item.score
+                                <p>@(item.complite == "+" ? "Готово" : "В процессе")</p>
+                            </button>
+                        </a>
+                    }
+                }
+            </section>
+
+        </div>
+
+
+    </div>
+</div>

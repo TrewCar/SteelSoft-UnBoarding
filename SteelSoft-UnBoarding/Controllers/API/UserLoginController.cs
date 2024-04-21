@@ -9,7 +9,7 @@ namespace SteelSoft_UnBoarding.Controllers.API
     [ApiController]
     public class UserLoginController : ControllerBase
     {
-        [HttpPost("login", Name = "LogIn")]
+        [HttpGet("login", Name = "LogIn")]
         public ResAnswer Login(string login, string password)
         {
             User user = new();
@@ -30,18 +30,6 @@ namespace SteelSoft_UnBoarding.Controllers.API
             return new ResAnswer()
             {
                 msg = "Успешный вход",
-                status = "SUCCESS"
-            };
-        }
-        [HttpPost("logout", Name = "LogOut")]
-        public ResAnswer LogOut()
-        {
-            if(Request.Cookies.TryGetValue("login", out string res))
-            {
-                UserMenedger.LogOut(res);
-            }
-            return new ResAnswer() {
-                msg = "Успешный выход",
                 status = "SUCCESS"
             };
         }

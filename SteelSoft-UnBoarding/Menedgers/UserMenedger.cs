@@ -16,6 +16,7 @@ namespace SteelSoft_UnBoarding.Menedgers
             {
                 ID = reQuery[0]["id"],
                 Name = reQuery[0]["lastname"] + " " + reQuery[0]["name"] + " " + reQuery[0]["midname"],
+                Post = reQuery[0]["post"]
             };
             Users.Add(user.GUID, user);
             return user;
