@@ -20,10 +20,10 @@
     <div class="question">
         <div class="content-question">
             <div class="input-group">
-                <textarea type="text" id="text1" name="text1">@Model.GetInformation().Title</textarea>
+                <textarea type="text" id="text1" name="text1" readonly>@Model.GetInformation().Title</textarea>
             </div>
             <div class="input-group">
-                <textarea type="text" id="text2" name="text2">@Model.GetInformation().Content</textarea>
+                <textarea type="text" id="text2" name="text2" readonly>@Model.GetInformation().Content</textarea>
             </div>
             <div class="button-group">
                 @if (sosedi.last != -1)
