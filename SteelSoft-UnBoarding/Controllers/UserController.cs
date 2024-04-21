@@ -39,7 +39,7 @@ namespace SteelSoft_UnBoarding.Controllers
             //    status = "SUCCESS"
             //};
         }
-        public IActionResult Profile(int id = -1)
+        public IActionResult Profile(int id = -2)
         {
             if (Request.Cookies.TryGetValue("login", out string GUID))
             {

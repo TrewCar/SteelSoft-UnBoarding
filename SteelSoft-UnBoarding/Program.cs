@@ -11,7 +11,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-
+app.Urls.Add("http://*:80");
 app.UseRouting();
 
 app.UseAuthorization();

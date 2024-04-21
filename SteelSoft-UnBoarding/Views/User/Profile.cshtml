@@ -21,7 +21,7 @@
             <section class="bio">
                 <div class="bio-header">
                     <i class="fa-solid fa-list-check"></i>
-                    Задачи
+                    Материалы для ознакомления
                 </div>
                 @{
                     TaskListModel tlModel = new TaskListModel(Model.User);
@@ -61,9 +61,9 @@
             <section class="description">
                 <div class="description-header">
                     <i class="fa-brands fa-readme"></i>
-                    @(Model.Id != -1 ? $"Пункты - {Model.Task().Name}" : "Выберите задание")
+                    @(Model.Id != -2 ? $"Пункты - {Model.Task().Name}" : "Выберите материалы")
                 </div>
-                @if(Model.Id != -1)
+                @if(Model.Id != -2)
                 {
                     var questions = Model.GetQuestions();
                     foreach(var item in questions)

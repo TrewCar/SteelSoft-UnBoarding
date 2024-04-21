@@ -39,12 +39,12 @@ namespace SteelSoft_UnBoarding.Models
             var resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM questions WHERE number < {GetInformation().Number} AND id_task = {GetInformation().id_task}") ?? null;
             if (int.Parse(resQuery[0]["count"]) > 0)
             {
-                last = GetInformation().Number - 1;
+                last = int.Parse(PostgreSQL.Query($"SELECT id FROM questions WHERE number = {GetInformation().Number - 1} AND id_task = {GetInformation().id_task}")[0]["id"]);
             }
              resQuery = PostgreSQL.Query($"SELECT count(*) as count FROM questions WHERE number > {GetInformation().Number} AND id_task = {GetInformation().id_task}") ?? null;
             if (int.Parse(resQuery[0]["count"]) > 0)
             {
-                next = GetInformation().Number + 1;
+                next = int.Parse( PostgreSQL.Query($"SELECT id FROM questions WHERE number = {GetInformation().Number + 1} AND id_task = {GetInformation().id_task}")[0]["id"]);
             }
 
             return (last, next);
