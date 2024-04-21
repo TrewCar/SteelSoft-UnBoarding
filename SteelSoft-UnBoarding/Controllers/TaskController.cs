@@ -16,6 +16,7 @@ namespace SteelSoft_UnBoarding.Controllers
                 try
                 {
                     User user = UserMenedger.Users[GUID];
+                    new TaskModel(id, user).Task();
                 }
                 catch (Exception ex)
                 {

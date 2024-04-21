@@ -16,7 +16,9 @@ namespace SteelSoft_UnBoarding.Controllers
                 try
                 {
                     User user = UserMenedger.Users[GUID];
-                }catch (Exception ex)
+                    new QuestionModel(id, user).GetInformation();
+                }
+                catch (Exception ex)
                 {
                     Response.Cookies.Delete("login");
                     return RedirectToAction("Index", "home");
