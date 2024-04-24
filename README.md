@@ -7,6 +7,8 @@
 
 Настоить конфиги по пути /SteelSoft-UnBoardind/config.cs
 
+ДА ДА
+
 ```
 public static class Config
   {
