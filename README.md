@@ -3,6 +3,7 @@
 
 Востановить бд из файлв BackUp_DB.sql в PostgreSQL 15
 
+
 ## КОНФИГИ
 
 Настоить конфиги по пути /SteelSoft-UnBoardind/config.cs
